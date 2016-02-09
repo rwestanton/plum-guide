@@ -1,0 +1,136 @@
+<html>
+	<meta charset="utf-8">
+	<meta http-equiv="U-XA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hacker News API</title>
+	<meta name="author" content="Robert Stanton">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	<style>
+		#page-title { background-color: lightblue; padding: 16px 12px; }
+		.story-title { text-align: center; border-bottom: 1px solid #0d0d0d; padding: 24px 0; margin: 0; }
+	</style>
+
+	<script>
+		window.onload = function() {
+
+			// Cache Selections and File Names
+			var htmlTitleContainers = document.querySelectorAll(".story-title"),
+				htmlStoryLinks = document.querySelectorAll(".story-link"),
+				storiesIDsURL = "https://hacker-news.firebaseio.com/v0/topstories.json",
+				storiesURL = "https://hacker-news.firebaseio.com/v0/item/",
+				topTenStories = htmlStoryLinks.length; /* figure to loop through */
+
+			// Populate Title Containers
+			function populateTitleContainers() {
+				console.log("populateTitleContainers called");
+				for(var i=0; i<htmlTitleContainers.length; i++) {
+					var title = stories[i].title;
+					htmlTitleContainers[i].innerHTML = title;
+				}
+			}
+
+			// Call Stories URL and Retrieve JSON file
+			// Then populate page with titles and equivalent anchors with URLs
+			function getStories(stories, numLoops) {
+
+				for(var i=0; i<numLoops; i++) {
+					
+					var xhttp = new XMLHttpRequest();
+
+					xhttp.onreadystatechange = function() {
+					    if (xhttp.readyState == 4 && xhttp.status == 200) {
+					    	var string = xhttp.responseText;
+					    	var data = JSON.parse(string);
+					    	htmlTitleContainers[i].innerHTML = data.title;
+							console.log(htmlStoryLinks[i].href = data.url);
+					    }
+					}
+					xhttp.open("GET", storiesURL + stories[i].toString().substring(4) + ".json", false);
+					xhttp.send();
+				}
+			}
+
+			// Call IDs URL and Retrieve JSON file
+			function getStoriesIDs() {
+				
+				var xhttp = new XMLHttpRequest();
+
+				xhttp.onreadystatechange = function() {
+				    if (xhttp.readyState == 4 && xhttp.status == 200) {
+				       	var string = xhttp.responseText,
+				       	storyIDs = JSON.parse(string);
+				       	getStories(storyIDs, topTenStories);
+				    }
+				};
+
+				xhttp.open("GET", storiesIDsURL, false);
+				xhttp.send();
+			}
+
+			getStoriesIDs();
+		}
+	</script>
+
+	<body>
+		<main>
+			<div class="container-fluid">
+				<div id="headlines">
+					<h1 id="page-title">Hacker News 24!</h1>
+					<div class="row">
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+						<div class="col-xs-12">
+							<a class="story-link" href="" target="_blank">
+								<h3 class="story-title"></h3>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

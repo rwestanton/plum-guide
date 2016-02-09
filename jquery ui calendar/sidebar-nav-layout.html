@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="U-XA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery UI Calendar</title>
+	<meta name="author" content="Robert Stanton">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	
+	<style>
+		#calendar > .date-picker, 
+		#calendar > .date-ahead { 
+			float: left; 
+		}
+		#calendar textarea { 
+			margin-left: 20px; 
+		}
+	</style>
+
+	<script>
+	$(document).ready(function() {
+
+		// Selections
+		var calendar = "#calendar .date-picker";
+		var dateDisplayed = "#calendar .date-displayed";
+
+		// Create Datepicker
+		$(calendar).datepicker();
+
+		// Date Selection Event-handler for Datepicker
+		$(calendar).change(function() {
+			
+			// Get date from datepicker and change to 5 days ahead
+			var date = $(this).datepicker("getDate");
+			var dateAhead = new Date(date.setDate(date.getDate() +5)); 
+
+			var formattedDate = function(dateAhead) {
+				var day = date.getDate();
+				var month = date.getMonth();
+				var year = date.getFullYear();
+				date = day + "/" + month + "/" + year;
+				return date;
+			}
+
+			// Print dateAhead
+			$(dateDisplayed).val(formattedDate);
+		})
+	})
+	</script>
+</head>
+<body>
+	<main>
+		<div id="calendar">
+			<div class="date-picker"></div>
+			<textarea class="date-displayed" name="" id="" cols="30" rows="1"></textarea>	
+		</div>
+	</main>
+</body>
+</html>

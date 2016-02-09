@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="U-XA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sidebar Nav Layout</title>
+	<meta name="author" content="Robert Stanton">
+	
+	<style>
+
+		/* Utilities */
+		.img-responsive { 
+			width: 100%; 
+			display: block; 
+		}
+		.clearfix:before, 
+		.clearfix:after { 
+			content: " "; 
+			display: table; 
+		}
+		.clearfix:after { 
+			clear: both; 
+		}
+
+		/* Browser Style Reset */
+		body { 
+			margin: 0; 
+			padding: 0; 
+		}
+		nav ul { 
+			padding: 0; 
+			margin: 0; 
+		}
+		
+		/* Navbar */
+		html { 
+			position: absolute; 
+			top: 0; bottom: 0; 
+			left: 0; right: 0; 
+			min-height: 1px; 
+			height: 100%; /* Nav height fills page */
+		} 
+		body { 
+			height: 100%; 
+		}
+		nav { 
+			width: 100%; 
+			background-color: lightgreen; 
+		}
+		nav ul { 
+			list-style-type: none; 
+			width: 100%; 
+		}
+		nav ul li { 
+			display: inline-block; 
+			padding: 16px 12px; 
+		}
+
+		/* Box 1 - Images */
+		.tablet-image, .desktop-image { 
+			display: none; 
+		}
+
+		/* Box 2 - Background Images */
+		.background-image { 
+			min-height: 200px; 
+			background-image: url("assets/images/china_great_wall_of_china_sky.jpg");
+			background-size: contain; 
+		}
+
+		
+		/*===== MEDIA QUERIES =====*/
+
+		/* Tablet Breakpoint */
+		@media (min-width: 768px) {
+
+			nav { 
+				position: fixed; 
+				left: 0; 
+				width: 20%; 
+				height: 100%; /* fills height of page */ 
+			}
+			nav ul li { 
+				display: list-item; 
+			}
+			main { 
+				float: left; 
+				margin-left: 20%; 
+				width: 80%; 
+			}
+			.mobile-image { 
+				display: none; 
+			}
+			.tablet-image { 
+				display: block; 
+			}
+			.background-image { 
+				background-image: url("assets/images/my_cat_hates_xmas.jpg"); 
+			}
+		}
+		
+
+		/* Desktop Breakpoint */
+		@media (min-width: 992px) {
+
+			.tablet-image { 
+				display: none; 
+			}
+			.desktop-image { 
+				display: block; 
+			}
+			.background-image { 
+				background-image: url("assets/images/sydney_opera_house_building_architecture.jpg") ; 
+			}
+		}
+
+	</style>
+
+</head>
+<body>
+	<nav>
+		<ul class="clearfix">
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+		</ul>
+	</nav>
+	<main>
+		<div class="col">
+			<img class="mobile-image img-responsive" src="assets/images/china_great_wall_of_china_sky.jpg" alt="">
+			<img class="tablet-image img-responsive" src="assets/images/my_cat_hates_xmas.jpg" alt="">
+			<img class="desktop-image img-responsive" src="assets/images/sydney_opera_house_building_architecture.jpg" alt="">
+		</div>
+		<div class="col background-image">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, doloribus, nostrum! Labore aliquid, numquam, praesentium illum excepturi ab inventore exercitationem velit, consequuntur atque quod architecto. Odit aperiam esse nostrum, cum.</div>
+	</main>
+</body>
+</html>
