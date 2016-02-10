@@ -23,7 +23,7 @@
 
 			// Populate Title Containers
 			function populateTitleContainers() {
-				console.log("populateTitleContainers called");
+				"populateTitleContainers called";
 				for(var i=0; i<htmlTitleContainers.length; i++) {
 					var title = stories[i].title;
 					htmlTitleContainers[i].innerHTML = title;
@@ -43,10 +43,10 @@
 					    	var string = xhttp.responseText;
 					    	var data = JSON.parse(string);
 					    	htmlTitleContainers[i].innerHTML = data.title;
-							console.log(htmlStoryLinks[i].href = data.url);
+							htmlStoryLinks[i].href = data.url;
 					    }
 					}
-					xhttp.open("GET", storiesURL + stories[i].toString().substring(4) + ".json", false);
+					xhttp.open("GET", storiesURL + stories[i].toString() + ".json", false);
 					xhttp.send();
 				}
 			}
